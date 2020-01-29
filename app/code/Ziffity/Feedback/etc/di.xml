@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ziffity_feedback_feedback_listing_data_source" xsi:type="string">Ziffity\Feedback\Model\ResourceModel\DataExample\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Ziffity\Feedback\Model\ResourceModel\DataExample\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ziffity_customer_feedback</argument>
+            <argument name="resourceModel" xsi:type="string">Ziffity\Feedback\Model\ResourceModel\DataExample</argument>
+        </arguments>
+    </virtualType>
+</config>
