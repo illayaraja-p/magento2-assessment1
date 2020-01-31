@@ -1,5 +1,5 @@
 <?php
-namespace Ziffity\Feedback\Ui\Component\Listing\Grid\Columns;
+namespace Ziffity\Feedback\Ui\Component\Listing\Columns;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
