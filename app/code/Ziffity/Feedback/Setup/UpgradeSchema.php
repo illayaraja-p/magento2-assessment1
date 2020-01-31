@@ -27,7 +27,7 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface{
             [
                 'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
                 'nullable' => true,
-                'default' => 1,
+                'default' => 0,
                 'comment' => 'Status'
             ]
         );

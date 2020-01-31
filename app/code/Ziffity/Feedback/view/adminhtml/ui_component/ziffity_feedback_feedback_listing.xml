@@ -111,5 +111,14 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn name="view" class="Ziffity\Feedback\Ui\Component\Listing\Columns\ProductActions">
+            <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                  <item name="filter" xsi:type="string">text</item>
+                  <item name="label" xsi:type="string" translate="true">Action</item>
+              </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>

@@ -1,0 +1,25 @@
+
+<div class="container">
+  <?php $customerData = $block->getCustomerData();
+    $fName = $customerData ? $customerData->getFirstName() : '';
+    $lName = $customerData ? $customerData->getLastName() : '';
+    $email = $customerData ? $customerData->getEmail() : '';
+   ?>
+
+    <form id="form-feedback" class="form-feedback" action="/feedback" autocomplete="off" method="post" data-mage-init="{&quot;validation&quot;: {}}">
+        <label for="firstname">First Name1</label>
+        <input id="firstname" name="firstname" required="" type="text" placeholder="First Name" value="<?= $fName; ?>" />
+
+        <label for="lastname">Last Name</label>
+        <input id="lastname" name="lastname" required="" type="text" placeholder="Last Name" value="<?= $lName; ?>" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" required="" type="email" placeholder="Email" value="<?= $email; ?>" />
+
+        <label for="comment">Comment</label>
+        <textarea id="comment" style="height: 200px;" name="comment" required="" placeholder="Write something.."></textarea>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+</div>
