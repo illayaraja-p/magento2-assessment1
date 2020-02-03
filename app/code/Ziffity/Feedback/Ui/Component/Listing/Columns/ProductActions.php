@@ -14,7 +14,7 @@ class ProductActions extends Column
     private $urlBuilder;
 
     /** Url Path */
-    const PRODUCT_URL_PATH_VIEW = 'ziffity_feedback/feedback/feedback';
+    const PRODUCT_URL_PATH_VIEW = 'ziffity_feedback/feedback/view';
 
     public function __construct(
         ContextInterface $context,

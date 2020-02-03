@@ -6,6 +6,13 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="formCollections" xsi:type="array">
+                <item name="ziffity_feedback_feedback_form_listing_data_source" xsi:type="string">Ziffity\Feedback\Model\ResourceModel\DataExample\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
     <virtualType name="Ziffity\Feedback\Model\ResourceModel\DataExample\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">ziffity_customer_feedback</argument>
