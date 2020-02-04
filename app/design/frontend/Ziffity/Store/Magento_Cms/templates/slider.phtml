@@ -1,0 +1,39 @@
+<div id="owl-demo">
+</div>
+
+<script>
+require(['jquery', 'jquery/ui', 'OwlCarousel'], function($){
+
+  jQuery(document).ready( function() {
+    var url = "<?php echo $block->getBaseUrl().'feedback/Slider/' ?>";
+
+          jQuery.ajax({
+          url: url,
+          type: "POST",
+          success: function(response){
+            var content = '';
+            $.each(response, function(index) {
+                var name = response[index].firstname + ' ' +response[index].lastname;
+                content += '<div class="item" style="background-color: #ccc; color: #222; padding:20px; text-align:center;"><p style="font-size: 28px;">'+name+'</p><p style="font-size: 18px;">'+response[index].comment+'</p></div>';
+                //$("#owl-demo").append(content);
+            });
+            var owl = $("#owl-demo");
+
+            //owl.trigger('insertContent.owl',content);
+            owl.html(content);
+
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                items : 1,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
+
+            });
+
+            //owl.owlCarousel('add', content).owlCarousel('refresh')
+          }
+      });
+  });
+});
+</script>

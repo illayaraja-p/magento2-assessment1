@@ -215,6 +215,7 @@ return [
         'MagePal_GmailSmtpApp' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
+        'Vmasciotta_OwlCarousel' => 1,
         'Ziffity_Feedback' => 1
     ]
 ];

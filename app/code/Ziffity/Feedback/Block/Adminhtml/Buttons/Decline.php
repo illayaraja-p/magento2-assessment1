@@ -1,41 +1,69 @@
 <?php
 /**
- * Sample_News extension
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the MIT License
- * that is bundled with this package in the file LICENSE
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/mit-license.php
- *
- * @category  Sample
- * @package   Sample_News
- * @copyright 2016 Marius Strajeru
- * @license   http://opensource.org/licenses/mit-license.php MIT License
- * @author    Marius Strajeru
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Ziffity\Feedback\Block\Adminhtml\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+use Ziffity\Feedback\Block\Adminhtml\Buttons\Generic;
+
+/**
+ * Class OrderButton
+ */
 class Decline extends Generic implements ButtonProviderInterface
 {
     /**
-     * get button data
+     * @var \Magento\Framework\AuthorizationInterface
+     */
+    protected $authorization;
+
+    /**
+     * Constructor
      *
+     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param \Magento\Framework\Registry $registry
+     */
+    public function __construct(
+        \Magento\Backend\Block\Widget\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\App\Request\Http $request
+    ) {
+        $this->authorization = $context->getAuthorization();
+        parent::__construct($context, $registry);
+        $this->request = $request;
+    }
+
+    /**
      * @return array
      */
     public function getButtonData()
     {
-        return [
-            'label' => __('Decline'),
-            'class' => 'save secondary',
-            'data_attribute' => [
-                'mage-init' => ['button' => ['event' => 'save']],
-                'form-role' => 'save',
-            ],
-            'sort_order' => 90,
-        ];
+      $id = $this->request->getParams('id');
+
+        $data = [];
+        //if ($customerId && $this->authorization->isAllowed('Magento_Sales::create')) {
+            $data = [
+                'label' => __('Decline'),
+                'class' => 'save primary',
+                //'on_click' => sprintf("location.href = '%s';", $this->getCreateOrderUrl()),
+                'on_click' => sprintf("location.href = '%s';", $this->getUrl('ziffity_feedback/Status/Decline', ['id'=>$id['id'],'status'=>'Declined'])),
+
+                'class' => 'add',
+                'sort_order' => 40,
+            ];
+        //}
+        return $data;
+    }
+
+    /**
+     * Retrieve the Url for creating an order.
+     *
+     * @return string
+     */
+    public function getCreateOrderUrl()
+    {
+        //return $this->getUrl('ziffity_feedback/Status/Approve', ['id'=>$this->request->getParams('id'), 'status'=>'Accepted']);
     }
 }

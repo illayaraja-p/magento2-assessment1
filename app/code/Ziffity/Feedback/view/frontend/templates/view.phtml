@@ -1,0 +1,15 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $model=$objectManager->create('Ziffity\Feedback\Model\DataExample');
+    $datacollection=$model->getCollection();
+
+    echo "<table border=1><tr align=center><th>Id</th><th>Fist Name</th><th>Last Name</th></tr>";
+    foreach ($datacollection as $data) {
+        echo "<tr align=center>";
+            echo "<td>".$data->getId()."</td>";
+            echo "<td>".$data->getFirstname()."</td>";
+            echo "<td>".$data->getLastname()."</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+?>

@@ -51,24 +51,13 @@ class Index extends \Magento\Framework\App\Action\Action{
     			"lastname" => $lastname,
           "email" => $email,
           "comment" => $comment,
-    			"status" => true,
+    			"status" => "Pending",
     			"sort_order" => 1
     			]);
         $saveData = $model->save();
 
-
-
-
-        $email = $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE);
-        /*$name  = $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE);
-
-        echo $email;echo "<br/>";
-        echo $name;echo "<br/>";
-
-        $this->_view->loadLayout();
-        $this->_view->renderLayout();*/
-
-        $this->helperEmail->sendEmail();
+        $msg = 'Ziffity Solutions! Your feedback has been received. We will keep you updated!';
+        $this->helperEmail->sendEmail($email, $msg);
 
         if($saveData){
             $this->messageManager->addSuccess( __('Feedback received Successfully!') );

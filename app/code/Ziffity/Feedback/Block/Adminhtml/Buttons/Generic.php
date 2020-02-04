@@ -1,54 +1,50 @@
 <?php
-/**
- * Sample_News extension
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the MIT License
- * that is bundled with this package in the file LICENSE
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/mit-license.php
- *
- * @category  Sample
- * @package   Sample_News
- * @copyright 2016 Marius Strajeru
- * @license   http://opensource.org/licenses/mit-license.php MIT License
- * @author    Marius Strajeru
- */
 namespace Ziffity\Feedback\Block\Adminhtml\Buttons;
 
-use Magento\Backend\Block\Widget\Context;
-use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Search\Controller\RegistryConstants;
 
+/**
+ * Class GenericButton
+ */
 class Generic
 {
     /**
-     * @var Context
+     * Url Builder
+     *
+     * @var \Magento\Framework\UrlInterface
      */
-    protected $context;
+    protected $urlBuilder;
 
     /**
-     * @var AuthorRepositoryInterface
+     * Registry
+     *
+     * @var \Magento\Framework\Registry
      */
-    protected $authorRepository;
+    protected $registry;
 
     /**
-     * @param Context $context
-     * @param AuthorRepositoryInterface $authorRepository
+     * Constructor
+     *
+     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param \Magento\Framework\Registry $registry
      */
     public function __construct(
-        Context $context
+        \Magento\Backend\Block\Widget\Context $context,
+        \Magento\Framework\Registry $registry
     ) {
-        $this->context = $context;
+        $this->urlBuilder = $context->getUrlBuilder();
+        $this->registry = $registry;
     }
 
     /**
-     * Return Author page ID
+     * Return the synonyms group Id.
      *
      * @return int|null
      */
-    public function getAuthorId()
+    public function getId()
     {
+        $contact = $this->registry->registry('contact');
+        return $contact ? $contact->getId() : null;
     }
 
     /**
@@ -60,6 +56,6 @@ class Generic
      */
     public function getUrl($route = '', $params = [])
     {
-
+        return $this->urlBuilder->getUrl($route, $params);
     }
 }

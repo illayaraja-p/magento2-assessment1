@@ -25,9 +25,9 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface{
             $setup->getTable('ziffity_customer_feedback'),
             'status',
             [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 'nullable' => true,
-                'default' => 0,
+                'default' => 'Pending',
                 'comment' => 'Status'
             ]
         );
