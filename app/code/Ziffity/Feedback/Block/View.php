@@ -17,7 +17,11 @@ class View extends \Magento\Framework\View\Element\Template
     public function getCustomerData() {
 
         if ($this->_customerSession->isLoggedIn()) {
-            return $this->_customerSession->getCustomerData();
+            $firstname = $this->_customerSession->getCustomerData()->getFirstName();
+            $lastName = $this->_customerSession->getCustomerData()->getLastName();
+            $email = $this->_customerSession->getCustomerData()->getEmail();
+
+            return array($firstname, $lastName, $email);
         }
         return false;
     }

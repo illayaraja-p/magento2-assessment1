@@ -1,13 +1,13 @@
 
 <div class="container">
   <?php $customerData = $block->getCustomerData();
-    $fName = $customerData ? $customerData->getFirstName() : '';
-    $lName = $customerData ? $customerData->getLastName() : '';
-    $email = $customerData ? $customerData->getEmail() : '';
+    $fName = $customerData ? $customerData[0] : '';
+    $lName = $customerData ? $customerData[1] : '';
+    $email = $customerData ? $customerData[2] : '';
    ?>
 
     <form id="form-feedback" class="form-feedback" action="/feedback" autocomplete="off" method="post" data-mage-init="{&quot;validation&quot;: {}}">
-        <label for="firstname">First Name1</label>
+        <label for="firstname">First Name</label>
         <input id="firstname" name="firstname" required="" type="text" placeholder="First Name" value="<?= $fName; ?>" />
 
         <label for="lastname">Last Name</label>

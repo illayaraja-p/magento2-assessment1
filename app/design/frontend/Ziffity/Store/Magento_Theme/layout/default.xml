@@ -8,6 +8,16 @@
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="default_head_blocks"/>
     <body>
-        <referenceContainer  name="footer" remove="true" />
+        <!-- <referenceContainer  name="footer" remove="true" /> --> 
+        <referenceBlock name="privacy-policy-link" remove="true"/>
+            <referenceBlock name="footer_links">
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="custom-footer-link">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Customer Feedback</argument>
+                        <argument name="path" xsi:type="string">feedback/index/view</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+
     </body>
 </page>

@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Ziffity_Feedback::customer" title="Customer" module="Ziffity_Feedback" sortOrder="51" resource="Ziffity_Feedback::customer" />
-        <add id="Ziffity_Feedback::feedback" title="Customer Feedback" module="Ziffity_Feedback" sortOrder="10" action="ziffity_feedback/feedback" resource="Ziffity_Feedback::feedback" parent="Ziffity_Feedback::customer"/>
+        <add id="Ziffity_Feedback::feedback" title="Customer Feedback" module="Ziffity_Feedback" sortOrder="60" action="ziffity_feedback/feedback" resource="Ziffity_Feedback::feedback" parent="Magento_Customer::customer"/>
     </menu>
 </config>
