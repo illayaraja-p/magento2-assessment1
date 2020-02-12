@@ -4,10 +4,10 @@
 <script>
 require(['jquery', 'jquery/ui', 'OwlCarousel'], function($){
 
-  jQuery(document).ready( function() {
-    var url = "<?php echo $block->getBaseUrl().'feedback/Slider/' ?>";
+$(document).ready( function() {
+          var url = "<?php echo $block->getBaseUrl().'feedback/Slider/' ?>";
 
-          jQuery.ajax({
+          $.ajax({
           url: url,
           type: "POST",
           success: function(response){

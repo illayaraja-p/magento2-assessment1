@@ -19,6 +19,10 @@ class Decline extends Generic implements ButtonProviderInterface
      */
     protected $authorization;
 
+    const URL_PATH_VIEW = 'ziffity_feedback/Status/Decline';
+    const LABEL_BUTTON = 'Decline';
+    const STATUS = 'Declined';
+
     /**
      * Constructor
      *
@@ -40,30 +44,7 @@ class Decline extends Generic implements ButtonProviderInterface
      */
     public function getButtonData()
     {
-      $id = $this->request->getParams('id');
-
-        $data = [];
-        //if ($customerId && $this->authorization->isAllowed('Magento_Sales::create')) {
-            $data = [
-                'label' => __('Decline'),
-                'class' => 'save primary',
-                //'on_click' => sprintf("location.href = '%s';", $this->getCreateOrderUrl()),
-                'on_click' => sprintf("location.href = '%s';", $this->getUrl('ziffity_feedback/Status/Decline', ['id'=>$id['id'],'status'=>'Declined'])),
-
-                'class' => 'add',
-                'sort_order' => 40,
-            ];
-        //}
-        return $data;
-    }
-
-    /**
-     * Retrieve the Url for creating an order.
-     *
-     * @return string
-     */
-    public function getCreateOrderUrl()
-    {
-        //return $this->getUrl('ziffity_feedback/Status/Approve', ['id'=>$this->request->getParams('id'), 'status'=>'Accepted']);
+        $id = $this->request->getParams('id');
+        return $this->getBtnData($id, self::LABEL_BUTTON, self::URL_PATH_VIEW, self::STATUS);
     }
 }

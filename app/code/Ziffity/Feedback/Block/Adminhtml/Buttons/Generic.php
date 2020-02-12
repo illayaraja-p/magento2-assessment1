@@ -58,4 +58,17 @@ class Generic
     {
         return $this->urlBuilder->getUrl($route, $params);
     }
+
+    public function getBtnData($id, $label, $route, $status){
+        $data = [];
+        $data = [
+            'label' => __($label),
+            'class' => 'save primary',
+            'on_click' => sprintf("location.href = '%s';", $this->getUrl($route, ['id'=>$id['id'],'status'=>$status])),
+            'class' => 'add',
+            'sort_order' => 40,
+        ];
+        return $data;
+    }
+
 }

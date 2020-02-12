@@ -8,4 +8,4 @@ class DataExample extends \Magento\Framework\Model\AbstractModel{
     }
 
 }
- ?>
+

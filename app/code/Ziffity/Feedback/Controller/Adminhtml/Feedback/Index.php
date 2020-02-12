@@ -5,6 +5,7 @@ namespace Ziffity\Feedback\Controller\Adminhtml\Feedback;
 class Index extends \Magento\Backend\App\Action
 {
 	protected $resultPageFactory = false;
+	const TITLE = "Feedbacks";
 
 	public function __construct(
 		\Magento\Backend\App\Action\Context $context,
@@ -18,7 +19,7 @@ class Index extends \Magento\Backend\App\Action
 	public function execute()
 	{
 		$resultPage = $this->resultPageFactory->create();
-		$resultPage->getConfig()->getTitle()->prepend((__('Feedbacks')));
+		$resultPage->getConfig()->getTitle()->prepend((__(self::TITLE)));
 
 		return $resultPage;
 	}

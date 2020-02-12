@@ -17,6 +17,9 @@ class Index extends \Magento\Framework\App\Action\Action{
     protected $request;
     protected $scopeConfig;
 
+    const RECEIVE_MSG = 'Ziffity Solutions! Your feedback has been received. We will keep you updated!';
+    const SUCCESS_MSG = 'Feedback received Successfully!';
+
     public function __construct(\Magento\Framework\App\Action\Context $context,
         \Ziffity\Feedback\Model\DataExampleFactory  $dataExample,
         \Magento\Framework\Controller\ResultFactory $result,
@@ -56,11 +59,11 @@ class Index extends \Magento\Framework\App\Action\Action{
     			]);
         $saveData = $model->save();
 
-        $msg = 'Ziffity Solutions! Your feedback has been received. We will keep you updated!';
-        $this->helperEmail->sendEmail($email, $msg);
+        
+        $this->helperEmail->sendEmail($email, self::RECEIVE_MSG);
 
         if($saveData){
-            $this->messageManager->addSuccess( __('Feedback received Successfully!') );
+            $this->messageManager->addSuccess( __(self::SUCCESS_MSG) );
         }
 		return $resultRedirect;
 	}

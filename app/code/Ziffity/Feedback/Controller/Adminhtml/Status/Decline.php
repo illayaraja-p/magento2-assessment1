@@ -8,7 +8,9 @@ use Ziffity\Feedback\Helper\Email;
 
 class Decline extends \Magento\Framework\App\Action\Action
 {
-  protected $resultRedirect;
+    protected $resultRedirect;
+    const DECLINE_MSG = 'Ziffity Solutions! Your feedback has been declined by the admin. Please provide valid feedback! Thank you!!!';
+
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Request\Http $request,
@@ -24,23 +26,22 @@ class Decline extends \Magento\Framework\App\Action\Action
     }
     public function execute()
     {
-      $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
-      $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
 
-          $this->messageManager->addSuccess( __('Feedback declined!') );
+        $this->messageManager->addSuccess( __('Feedback declined!') );
 
-          //update status
-          $id = $this->getRequest()->getParam('id');
-          $post = $this->_postFactory->create();
+        //update status
+        $id = $this->getRequest()->getParam('id');
+        $post = $this->_postFactory->create();
 
-          $postUpdate = $post->load($id);
-          $postUpdate->setStatus("Declined");
-          $postUpdate->save();
-          //update status
+        $postUpdate = $post->load($id);
+        $postUpdate->setStatus("Declined");
+        $postUpdate->save();
+        //update status
 
-          $email = $postUpdate->getEmail();
-          $msg = 'Ziffity Solutions! Your feedback has been declined by the admin. Please provide valid feedback! Thank you!!!';
-          $this->helperEmail->sendEmail($email, $msg);
+        $email = $postUpdate->getEmail();
+        $this->helperEmail->sendEmail($email, self::DECLINE_MSG);
 
       return $resultRedirect;
     }

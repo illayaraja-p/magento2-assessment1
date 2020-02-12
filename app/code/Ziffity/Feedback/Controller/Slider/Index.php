@@ -1,8 +1,6 @@
 <?php
 namespace Ziffity\Feedback\Controller\Slider;
 
-
-
 class Index extends \Magento\Framework\App\Action\Action
 {
     /**
@@ -22,7 +20,7 @@ class Index extends \Magento\Framework\App\Action\Action
     {
 
       $this->_collectionFactory = $CollectionFactory;
-$this->jsonResultFactory = $jsonResultFactory;
+      $this->jsonResultFactory = $jsonResultFactory;
         return parent::__construct($context);
     }
 

@@ -8,7 +8,9 @@ use Ziffity\Feedback\Helper\Email;
 
 class Approve extends \Magento\Framework\App\Action\Action
 {
-  protected $resultRedirect;
+    protected $resultRedirect;
+    const APPROVE_MSG = 'Ziffity Solutions! Your feedback has been Approved. Provide more feedback to keep up updated! Thank you!!!';
+    
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Request\Http $request,
@@ -27,22 +29,19 @@ class Approve extends \Magento\Framework\App\Action\Action
         $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setUrl($this->_redirect->getRefererUrl());
 
+        $this->messageManager->addSuccess( __('Feedback approved!') );
 
+        //update status
+        $id = $this->getRequest()->getParam('id');
+        $post = $this->_postFactory->create();
 
-          $this->messageManager->addSuccess( __('Feedback approved!') );
+        $postUpdate = $post->load($id);
+        $postUpdate->setStatus("Approved");
+        $postUpdate->save();
+        //update status
 
-          //update status
-          $id = $this->getRequest()->getParam('id');
-          $post = $this->_postFactory->create();
-
-          $postUpdate = $post->load($id);
-          $postUpdate->setStatus("Approved");
-          $postUpdate->save();
-          //update status
-
-          $email = $postUpdate->getEmail();
-          $msg = 'Ziffity Solutions! Your feedback has been Approved. Provide more feedback to keep up updated! Thank you!!!';
-          $this->helperEmail->sendEmail($email, $msg);
+        $email = $postUpdate->getEmail();          
+        $this->helperEmail->sendEmail($email, self::APPROVE_MSG);
 
       return $resultRedirect;
     }
